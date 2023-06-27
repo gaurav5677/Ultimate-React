@@ -153,6 +153,14 @@ const book = getBook(2);
 
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
   book; // this is Object Destructuring
+
+//   { geners = a particular type or style of literature, art, film or music that you can recognize because of its special characteristics}
 // here  i give the excatly the  same name to the varrialbe as they are in the properties in the Object
 
-console.log(title, author, pages, genres, hasMovieAdaptation);
+console.log(title, author, genres);
+
+//this is Array  Destructuring
+
+const [primaryGenres, secondaryGeners] = genres;
+
+console.log(primaryGenres, secondaryGeners);
