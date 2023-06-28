@@ -176,3 +176,14 @@ const updatedBook = {
   pages: 1210,
 };
 updatedBook;
+
+///////////////////////////////// Template Litrals  /////////////////////////////////
+
+// Template litreals are an ES6 javascript feature that allows us to very easily create
+// strings that contain some JavaScript varriables pr any js Expression
+
+const summary = `${title}, a ${pages}-page long book , was written by ${author} and published in ${
+  publicationDate.split_("-")[0]
+}`;
+
+console.log(summary);
