@@ -161,6 +161,18 @@ console.log(title, author, genres);
 
 //this is Array  Destructuring
 
-const [primaryGenres, secondaryGeners] = genres;
+const [primaryGenres, secondaryGenres, ...othergenres] = genres;
+console.log(primaryGenres, secondaryGenres);
 
-console.log(primaryGenres, secondaryGeners);
+///////////////////////////////// Rest / Spread Operator  /////////////////////////////////
+const newGenres = ["epic fantany", ...genres];
+newGenres;
+
+const updatedBook = {
+  ...book,
+  //Adding New Property
+  moviePublicationDate: "2001-12-19",
+  // Overwriting  an Existing property
+  pages: 1210,
+};
+updatedBook;
