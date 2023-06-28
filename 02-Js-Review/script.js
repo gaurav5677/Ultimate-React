@@ -187,3 +187,8 @@ const summary = `${title}, a ${pages}-page long book , was written by ${author} 
 }`;
 
 console.log(summary);
+
+/////////////////////////////////  Optional Chaining  /////////////////////////////////
+
+function getTotalReviewCount(book) {}
+getTotalReviewCount(book);
