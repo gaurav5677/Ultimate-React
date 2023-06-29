@@ -63,7 +63,7 @@ function Pizza() {
     <div>
       <img src="pizzas/salamino.jpg" alt="Pizza Salamino "></img>
       <h2>Pizza Salamino</h2>
-      <p>Tomato, mozarella, and pepperoni</p>
+      <p>Tomato, mozarella, and pepperon</p>
     </div>
   );
 }
