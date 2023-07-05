@@ -60,7 +60,6 @@ function App() {
 function Header() {
   return (
     <header className="header">
-      {" "}
       <h1> Fast React Pizza Co.</h1>
     </header>
   );
@@ -69,17 +68,32 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu </h2>
-      <Pizza />
+      <Pizza
+        name="Pizza Salamino"
+        ingredients="Tomato, mozarella, and pepperoni"
+        price={10}
+        photoName="pizzas/salamino.jpg"
+      />
+      <Pizza
+        name="Pizza Prosciutto"
+        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
+        price={18}
+        photoName="pizzas/prosciutto.jpg"
+        //  soldOut= false
+      />
     </main>
   );
 }
 
-function Pizza() {
+function Pizza(props) {
   return (
-    <div>
-      <img src="pizzas/salamino.jpg" alt="Pizza Salamino "></img>
-      <h3>Pizza Salamino</h3>
-      <p>Tomato, mozarella, and pepperon</p>
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name}></img>
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 4}</span>
+      </div>
     </div>
   );
 }
