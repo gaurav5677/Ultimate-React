@@ -70,11 +70,20 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu </h2>
       <Pizza />
-      <Pizza />
-      <Pizza />
     </main>
   );
 }
+
+function Pizza() {
+  return (
+    <div>
+      <img src="pizzas/salamino.jpg" alt="Pizza Salamino "></img>
+      <h3>Pizza Salamino</h3>
+      <p>Tomato, mozarella, and pepperon</p>
+    </div>
+  );
+}
+
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 12;
@@ -90,16 +99,6 @@ function Footer() {
       {" "}
       {new Date().toLocaleTimeString()}We are Currently Open{" "}
     </footer>
-  );
-}
-
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/salamino.jpg" alt="Pizza Salamino "></img>
-      <h3>Pizza Salamino</h3>
-      <p>Tomato, mozarella, and pepperon</p>
-    </div>
   );
 }
 
