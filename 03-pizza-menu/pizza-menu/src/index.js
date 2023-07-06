@@ -66,14 +66,15 @@ function Header() {
 }
 
 function Menu() {
-  // const pizzas = [];
-  const pizzas = pizzaData;
+  const pizzas = [];
+  // const pizzas = pizzaData;
 
   const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu </h2>
-
+      {/* 
+      // Conditional Rendering Using && operator
       {numPizzas > 0 && (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
@@ -81,7 +82,21 @@ function Menu() {
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      )} */}
+
+      {/* Conditional Rendering using Ternary Operator ?   
+    more prefered over &&  */}
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            // <Pizza name={x.name} photoName={x.photoName} />
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu , please come back later </p>
       )}
+
       {/* Rendering list :- Means when we have an array and we want to create one component for each element of the arrya  */}
 
       {/* for this we mostly use javaScripts  map() method   */}
@@ -118,7 +133,7 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 8;
+  const openHour = 20;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   // console.log(isopen);
@@ -128,13 +143,26 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {/* Conditional Rendering Using Ternaries Operator  */}
+      {isOpen ? (
         <div className="order">
           <p>We're open till {closeHour}:00 , Come visit us or Order Online </p>
 
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          We're are Happy to Welcome you between {openHour}:00 and {closeHour}
+          :00{" "}
+        </p>
       )}
+      {/* {isOpen && (
+        <div className="order">
+          <p>We're open till {closeHour}:00 , Come visit us or Order Online </p>
+
+          <button className="btn">Order</button>
+        </div>
+      )} */}
     </footer>
   );
 }
