@@ -64,12 +64,27 @@ function Header() {
     </header>
   );
 }
+
 function Menu() {
+  // const pizzas = [];
+  const pizzas = pizzaData;
+
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu </h2>
 
-      <div></div>
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            // <Pizza name={x.name} photoName={x.photoName} />
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
+      {/* Rendering list :- Means when we have an array and we want to create one component for each element of the arrya  */}
+
+      {/* for this we mostly use javaScripts  map() method   */}
 
       {/*<Pizza
         name="Pizza Salamino"
@@ -90,31 +105,36 @@ function Menu() {
 
 function Pizza(props) {
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name}></img>
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price + 4}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 8;
   const closeHour = 22;
-  const isopen = hour >= openHour && hour <= closeHour;
-  console.log(isopen);
+  const isOpen = hour >= openHour && hour <= closeHour;
+  // console.log(isopen);
   // if (hour >= openHour && hour <= closeHour) alert("We're Currently Open");
   // else alert("Sorry , We're Closed");
   // console.log(hour);
 
   return (
     <footer className="footer">
-      {" "}
-      {new Date().toLocaleTimeString()}We are Currently Open{" "}
+      {isOpen && (
+        <div className="order">
+          <p>We're open till {closeHour}:00 , Come visit us or Order Online </p>
+
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }
