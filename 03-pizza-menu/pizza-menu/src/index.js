@@ -46,7 +46,7 @@ const pizzaData = [
     soldOut: false,
   },
 ];
-
+////////////////////////   App   ////////////////////////
 function App() {
   return (
     <main className="container">
@@ -56,7 +56,7 @@ function App() {
     </main>
   );
 }
-
+////////////////////////    Header  ////////////////////////
 function Header() {
   return (
     <header className="header">
@@ -65,6 +65,7 @@ function Header() {
   );
 }
 
+////////////////////////  Menu   ////////////////////////
 function Menu() {
   // const pizzas = [];
   const pizzas = pizzaData;
@@ -73,17 +74,17 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu </h2>
+      <p>Authentic Italian cuisine.</p>
       {/* 
       // Conditional Rendering Using && operator
       {numPizzas > 0 && (
         <ul className="pizzas">
-          {pizzas.map((pizza) => (
+          {pizzas.map((pizza) => ( 
             // <Pizza name={x.name} photoName={x.photoName} />
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
       )} */}
-
       {/* Conditional Rendering using Ternary Operator ?   
     more prefered over &&  */}
       {numPizzas > 0 ? (
@@ -96,11 +97,8 @@ function Menu() {
       ) : (
         <p>We're still working on our menu , please come back later </p>
       )}
-
       {/* Rendering list :- Means when we have an array and we want to create one component for each element of the arrya  */}
-
       {/* for this we mostly use javaScripts  map() method   */}
-
       {/*<Pizza
         name="Pizza Salamino"
         ingredients="Tomato, mozarella, and pepperoni"
@@ -118,6 +116,7 @@ function Menu() {
   );
 }
 
+////////////////////////   Pizza  ////////////////////////
 function Pizza({ pizzaObj }) {
   if (pizzaObj.soldOut) return null;
   return (
@@ -132,6 +131,7 @@ function Pizza({ pizzaObj }) {
   );
 }
 
+////////////////////////  Footer   ////////////////////////
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 12;
@@ -153,7 +153,7 @@ function Footer() {
     <footer className="footer">
       {/* Conditional Rendering Using Ternaries Operator  */}
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <p>
           We're are Happy to Welcome you between {openHour}:00 and {closeHour}
@@ -171,7 +171,8 @@ function Footer() {
   );
 }
 
-function Order(openHour, closeHour) {
+////////////////////////  Order ////////////////////////
+function Order({ openHour, closeHour }) {
   return (
     <div className="order">
       <p>
