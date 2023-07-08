@@ -74,7 +74,7 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu </h2>
-      <p>Authentic Italian cuisine.</p>
+
       {/* 
       // Conditional Rendering Using && operator
       {numPizzas > 0 && (
@@ -88,12 +88,18 @@ function Menu() {
       {/* Conditional Rendering using Ternary Operator ?   
     more prefered over &&  */}
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            // <Pizza name={x.name} photoName={x.photoName} />
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Authentic Italian cuisine. 6 Creative dishes to choose from . All
+            from our stone oven , all organic , all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              // <Pizza name={x.name} photoName={x.photoName} />
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're still working on our menu , please come back later </p>
       )}
@@ -118,14 +124,14 @@ function Menu() {
 
 ////////////////////////   Pizza  ////////////////////////
 function Pizza({ pizzaObj }) {
-  if (pizzaObj.soldOut) return null;
+  // if (pizzaObj.soldOut) return null;
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name}></img>
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
-        <span>{pizzaObj.price}</span>
+        <span>{pizzaObj.soldOut ? "SOL D OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
