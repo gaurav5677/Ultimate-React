@@ -12,17 +12,18 @@ export default function App() {
   const [test, setTest] = useState({ name: "gaurav" });
 
   function handlePrevious() {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((next) => next - 1);
   }
   function handleNext() {
-    if (step < 3) setStep(step + 1);
+    if (step < 3) setStep((next) => next + 1);
+
     // Bad practise
     // test.name = "Raj";
     setTest({ name: "Raj " });
   }
   return (
     <div>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((open) => !open)}>
         &times;
       </button>
 
