@@ -1,9 +1,4 @@
 import { useState } from "react";
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Mobile ", quantity: 2, packed: true },
-];
 
 export default function App() {
   const [items, setItems] = useState([]); //used lift up state technique
@@ -16,12 +11,17 @@ export default function App() {
     setItems((items) => [...items, item]);
   }
 
+  function handleDeleteItems(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+    // we need a new arrya after the item has been deleted . so this new arrya will be based on current one
+    // so i put a call back function which will receive current item as its input
+  }
   return (
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />{" "}
       {/* calling onAddItems for better conventions */}
-      <ItemList items={items} />
+      <ItemList items={items} onDeleteItems={handleDeleteItems} />
       <Status />
     </div>
   );
@@ -74,13 +74,13 @@ function Form({ onAddItems }) {
   );
 }
 
-function ItemList({ items }) {
+function ItemList({ items, onDeleteItems }) {
   //Immediately destruncted items
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item item={item} onDeleteItems={onDeleteItems} key={item.id} />
           // <Item item ={item}  1st is name of component , 2nd  is name of prop and 3rd is object itself
         ))}
       </ul>
@@ -88,7 +88,7 @@ function ItemList({ items }) {
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItems }) {
   // immediately destruced the item , preventing function error
   return (
     <li>
@@ -96,7 +96,7 @@ function Item({ item }) {
         {item.quantity} {item.description}
       </span>
 
-      <button>❌</button>
+      <button onClick={() => onDeleteItems(item.id)}>❌</button>
     </li>
   );
 }
