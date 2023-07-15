@@ -16,12 +16,24 @@ export default function App() {
     // we need a new arrya after the item has been deleted . so this new arrya will be based on current one
     // so i put a call back function which will receive current item as its input
   }
+
+  function handleToggleItem(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
   return (
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />{" "}
       {/* calling onAddItems for better conventions */}
-      <ItemList items={items} onDeleteItems={handleDeleteItems} />
+      <ItemList
+        items={items}
+        onDeleteItems={handleDeleteItems}
+        onTggleItem={handleToggleItem}
+      />
       <Status />
     </div>
   );
@@ -35,7 +47,7 @@ function Form({ onAddItems }) {
   // destructed the props
   //piece of State
   const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState(5);
+  const [quantity, setQuantity] = useState(1);
 
   // this function will receive a  new item object which wil then add to the Arrya list
 
@@ -74,13 +86,18 @@ function Form({ onAddItems }) {
   );
 }
 
-function ItemList({ items, onDeleteItems }) {
+function ItemList({ items, onDeleteItems, onTggleItem }) {
   //Immediately destruncted items
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} onDeleteItems={onDeleteItems} key={item.id} />
+          <Item
+            item={item}
+            onDeleteItems={onDeleteItems}
+            onTggleItem={onTggleItem}
+            key={item.id}
+          />
           // <Item item ={item}  1st is name of component , 2nd  is name of prop and 3rd is object itself
         ))}
       </ul>
@@ -88,10 +105,18 @@ function ItemList({ items, onDeleteItems }) {
   );
 }
 
-function Item({ item, onDeleteItems }) {
+function Item({ item, onDeleteItems, onTggleItem }) {
   // immediately destruced the item , preventing function error
   return (
     <li>
+      <input
+        type="checkbox"
+        value={item.packed}
+        onChange={() => onTggleItem(item.id)}
+      />
+      {/* i want to transform this checkbox in to control element  */}
+      {/* control element means that the element has the value define  by state , also has event 
+      handler , which listen for change and update state accrodingly  */}
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
