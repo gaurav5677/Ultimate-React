@@ -88,10 +88,28 @@ function Form({ onAddItems }) {
 
 function ItemList({ items, onDeleteItems, onTggleItem }) {
   //Immediately destruncted items
+
+  const [sortBy, setSortBy] = useState("input");
+
+  let sortedItems;
+
+  if (sortBy === "input") sortedItems = items;
+
+  if (sortBy === "description")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+  // with slice method we take the capy of array because sorting method is mutating method
+
+  if (sortBy === "packed")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+
   return (
     <div className="list">
       <ul>
-        {items.map((item) => (
+        {sortedItems.map((item) => (
           <Item
             item={item}
             onDeleteItems={onDeleteItems}
@@ -102,10 +120,10 @@ function ItemList({ items, onDeleteItems, onTggleItem }) {
         ))}
       </ul>
       <div className="action">
-        <select>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="input"> Sort by Input Order</option>
           <option value="description"> Sort by description</option>
-          <option value="Packed"> Sort by Packed Status</option>
+          <option value="packed"> Sort by Packed Status</option>
         </select>
       </div>
     </div>
