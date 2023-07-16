@@ -101,6 +101,13 @@ function ItemList({ items, onDeleteItems, onTggleItem }) {
           // <Item item ={item}  1st is name of component , 2nd  is name of prop and 3rd is object itself
         ))}
       </ul>
+      <div className="action">
+        <select>
+          <option value="input"> Sort by Input Order</option>
+          <option value="description"> Sort by description</option>
+          <option value="Packed"> Sort by Packed Status</option>
+        </select>
+      </div>
     </div>
   );
 }
