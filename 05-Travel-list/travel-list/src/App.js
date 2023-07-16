@@ -24,6 +24,14 @@ export default function App() {
       )
     );
   }
+
+  function handleClearItem() {
+    const confermed = window.confirm(
+      "Are you sure you want to delete all items?"
+    );
+
+    if (confermed) setItems([]);
+  }
   return (
     <div className="app">
       <Logo />
@@ -33,6 +41,7 @@ export default function App() {
         items={items}
         onDeleteItems={handleDeleteItems}
         onTggleItem={handleToggleItem}
+        onCleanList={handleClearItem}
       />
       <Status items={items} />
     </div>
@@ -86,7 +95,7 @@ function Form({ onAddItems }) {
   );
 }
 
-function ItemList({ items, onDeleteItems, onTggleItem }) {
+function ItemList({ items, onDeleteItems, onTggleItem, onCleanList }) {
   //Immediately destruncted items
 
   const [sortBy, setSortBy] = useState("input");
@@ -119,12 +128,13 @@ function ItemList({ items, onDeleteItems, onTggleItem }) {
           // <Item item ={item}  1st is name of component , 2nd  is name of prop and 3rd is object itself
         ))}
       </ul>
-      <div className="action">
+      <div className="actions">
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="input"> Sort by Input Order</option>
           <option value="description"> Sort by description</option>
           <option value="packed"> Sort by Packed Status</option>
         </select>
+        <button onClick={onCleanList}>Clear List</button>
       </div>
     </div>
   );
